@@ -37,4 +37,24 @@ class Home extends BaseController
 
         return view('homepage', $data);
     }
+
+    public function detail($id = null)
+    {
+        $model = new JuhuSingkahModel();
+        $item = $model->find($id);
+
+        if (!$item) {
+            return redirect()->to('/')->with('error', 'Menu Juhu Singkah tidak ditemukan.');
+        }
+
+        // Get related recommendations from same or other categories
+        $related = $model->where('id !=', $id)->limit(3)->findAll();
+
+        $data = [
+            'item'    => $item,
+            'related' => $related,
+        ];
+
+        return view('detail', $data);
+    }
 }

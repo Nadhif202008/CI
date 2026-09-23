@@ -31,9 +31,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    </style>
+    <style> body { font-family: 'Plus Jakarta Sans', sans-serif; } </style>
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
 
@@ -41,9 +39,9 @@
     <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-11 h-11 rounded-xl bg-brand-500 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                <a href="<?= base_url('/'); ?>" class="w-11 h-11 rounded-xl bg-brand-500 text-white flex items-center justify-center font-bold text-xl shadow-md">
                     <i class="fa-solid fa-utensils"></i>
-                </div>
+                </a>
                 <div>
                     <span class="text-2xl font-extrabold tracking-tight text-slate-900">Juhu<span class="text-brand-500">Singkah</span></span>
                     <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Warung Khas Dayak</span>
@@ -64,11 +62,11 @@
 
             <div>
                 <?php if (session()->get('logged_in')): ?>
-                    <a href="<?= base_url('/admin'); ?>" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition inline-flex items-center gap-2">
+                    <a href="<?= base_url('/admin'); ?>" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition inline-flex items-center gap-2 text-sm">
                         <i class="fa-solid fa-gauge"></i> Dashboard Admin
                     </a>
                 <?php else: ?>
-                    <a href="<?= base_url('/login'); ?>" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition inline-flex items-center gap-2">
+                    <a href="<?= base_url('/login'); ?>" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition inline-flex items-center gap-2 text-sm">
                         <i class="fa-solid fa-right-to-bracket"></i> Login Admin
                     </a>
                 <?php endif; ?>
@@ -95,7 +93,7 @@
                         <i class="fa-solid fa-utensils"></i> Lihat 8 Variasi Menu
                     </a>
                     <a href="#tentang" class="bg-white/10 hover:bg-white/20 text-white backdrop-blur border border-white/20 px-6 py-3.5 rounded-xl font-semibold transition inline-flex items-center gap-2">
-                        <i class="fa-solid fa-book-open"></i> Pelajari Resep
+                        <i class="fa-solid fa-book-open"></i> Resep & Cerita
                     </a>
                 </div>
             </div>
@@ -103,6 +101,9 @@
                 <div class="w-full h-80 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 relative group">
                     <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Juhu Singkah Umbut Rotan" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute top-4 left-4 bg-brand-600/90 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full border border-white/20">
+                        <i class="fa-solid fa-wand-magic-sparkles text-accent"></i> Gambar Visual AI Studio
+                    </div>
                     <div class="absolute bottom-6 left-6 right-6 p-4 bg-slate-900/90 backdrop-blur rounded-2xl border border-white/10 flex items-center justify-between">
                         <div>
                             <p class="text-xs text-accent font-bold uppercase tracking-wider">Sajian Utama Hari Ini</p>
@@ -125,7 +126,7 @@
                     <i class="fa-solid fa-fire"></i> Menu Pilihan Hari Ini
                 </div>
                 <h2 class="text-3xl font-extrabold text-slate-900">Daftar Variasi Juhu Singkah</h2>
-                <p class="text-slate-500 mt-1">Tersedia <?= count($makanan); ?> pilihan menu hidangan olahan rotan muda segar</p>
+                <p class="text-slate-500 mt-1">Klik pada menu untuk melihat halaman detail lengkap & kalkulator porsi</p>
             </div>
 
             <!-- Search & Filter Form -->
@@ -152,7 +153,7 @@
                     <i class="fa-solid fa-bowl-rice"></i>
                 </div>
                 <h3 class="text-xl font-bold text-slate-900 mb-2">Menu Tidak Ditemukan</h3>
-                <p class="text-slate-500 text-sm mb-6">Kata kunci pencarian yang Anda masukkan tidak cocok dengan daftar menu Juhu Singkah kami.</p>
+                <p class="text-slate-500 text-sm mb-6">Kata kunci pencarian tidak cocok dengan daftar menu Juhu Singkah.</p>
                 <a href="<?= base_url('/'); ?>" class="bg-brand-500 text-white px-5 py-2.5 rounded-xl font-semibold text-sm inline-block">Tampilkan Semua Menu</a>
             </div>
         <?php else: ?>
@@ -161,7 +162,7 @@
                     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
                         
                         <!-- Card Image Header -->
-                        <div class="relative h-48 overflow-hidden bg-slate-100">
+                        <a href="<?= base_url('/detail/' . $item['id']); ?>" class="relative h-48 overflow-hidden bg-slate-100 block">
                             <img src="<?= esc($item['gambar']); ?>" alt="<?= esc($item['nama_makanan']); ?>" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur text-accent px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider">
                                 <?= esc($item['kategori'] ?? 'Dayak Food'); ?>
@@ -169,24 +170,26 @@
                             <span class="absolute bottom-3 right-3 bg-brand-500 text-white font-extrabold px-3 py-1 rounded-lg text-sm shadow">
                                 Rp <?= number_format($item['harga'], 0, ',', '.'); ?>
                             </span>
-                        </div>
+                        </a>
 
                         <!-- Card Body -->
                         <div class="p-5 flex flex-col flex-grow">
                             <h3 class="font-bold text-slate-900 text-lg mb-2 line-clamp-1 group-hover:text-brand-500 transition">
-                                <?= esc($item['nama_makanan']); ?>
+                                <a href="<?= base_url('/detail/' . $item['id']); ?>">
+                                    <?= esc($item['nama_makanan']); ?>
+                                </a>
                             </h3>
                             <p class="text-slate-500 text-xs leading-relaxed mb-4 line-clamp-3 flex-grow">
                                 <?= esc($item['deskripsi']); ?>
                             </p>
 
-                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                                <span class="flex items-center gap-1 font-semibold text-slate-600">
-                                    <i class="fa-solid fa-boxes-stacked text-brand-500"></i> Stok: <strong class="text-slate-900"><?= esc($item['stok']); ?> porsi</strong>
+                            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-semibold">
+                                    <i class="fa-solid fa-boxes-stacked text-brand-500"></i> Stok: <?= esc($item['stok']); ?>
                                 </span>
-                                <span class="bg-accent-light text-slate-800 font-bold px-2.5 py-1 rounded-md">
-                                    Tersedia
-                                </span>
+                                <a href="<?= base_url('/detail/' . $item['id']); ?>" class="bg-brand-50 hover:bg-brand-500 hover:text-white text-brand-600 font-bold text-xs px-3.5 py-1.5 rounded-lg transition inline-flex items-center gap-1">
+                                    Detail <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </a>
                             </div>
                         </div>
 
@@ -195,7 +198,7 @@
             </div>
         <?php endif; ?>
 
-        <!-- Information / Description Section -->
+        <!-- Information Section -->
         <section class="mt-20 bg-gradient-to-r from-brand-50 to-indigo-50 border border-brand-100 rounded-3xl p-8 sm:p-12" id="tentang">
             <div class="grid md:grid-cols-3 gap-8 items-center">
                 <div class="md:col-span-2">
@@ -205,7 +208,7 @@
                         Juhu Singkah adalah masakan khas masyarakat suku Dayak di Kalimantan Tengah. Bahan dasarnya diambil dari batang rotan muda yang dipotong halus dan dimasak bersama bumbu rempah kuning seperti kunyit, serai, lengkuas, dan bawang merah.
                     </p>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Rotan muda memberikan tekstur agak renyah dan cita rasa gurih khas dengan sedikit sentuhan pahit alami yang segar saat disantap bersama nasi hangat dan sambal terasi.
+                        Rotan muda memberikan tekstur agak renyah dan cita rasa gurih khas dengan sedikit sentuhan pahit alami yang segar saat disantap bersama nasi hangat.
                     </p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-brand-100 shadow-sm text-center">
@@ -213,7 +216,7 @@
                         <i class="fa-solid fa-leaf"></i>
                     </div>
                     <h4 class="font-bold text-slate-900 mb-1">100% Bahan Alami</h4>
-                    <p class="text-xs text-slate-500 mb-4">Rotan muda pilihan diambil langsung dari hutan tropis Kalimantan</p>
+                    <p class="text-xs text-slate-500 mb-4">Rotan muda pilihan dari hutan tropis Kalimantan</p>
                     <span class="inline-block bg-brand-500 text-white text-xs font-bold px-4 py-2 rounded-xl">Kaya Serat & Sehat</span>
                 </div>
             </div>
