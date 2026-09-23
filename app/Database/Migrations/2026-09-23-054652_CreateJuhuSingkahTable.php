@@ -32,6 +32,16 @@ class CreateJuhuSingkahTable extends Migration
                 'constraint' => 11,
                 'default'    => 0,
             ],
+            'kategori' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+                'default'    => 'Khas Dayak',
+            ],
+            'gambar' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+                'null'       => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
